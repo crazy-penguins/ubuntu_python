@@ -6,10 +6,12 @@ apt-get -qq update
 apt-get -qq install wget zip gcc g++ libsqlite3-dev libbz2-dev \
   libffi-dev make libreadline-dev libz3-dev libfreetype6-dev \
   libncurses5-dev libncursesw5-dev tk-dev libgdbm-dev \
-  libxml2-dev libxslt1-dev
+  libxml2-dev libxslt1-dev # libexpat1-dev  liblzma-dev
+apt-get -qq install python python-pip
+pip -q install awscli
 url="https://www.python.org/ftp/python/${version}/Python-${version}.tgz"
 filename="python-${version}.tgz"
-wget $url -O $filename
+wget -q $url -O $filename
 tar xzf $filename --strip-components=1
 rm $filename
 ./configure --enable-optimizations
