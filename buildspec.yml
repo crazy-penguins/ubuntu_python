@@ -6,7 +6,8 @@ phases:
       - chmod a+x build_python.sh
       - ./build_python.sh "${Version}"
       - |
-        zip_file="/tmp/python-${Version}.zip"
-        zip -q -r -m $zip_file /tmp/python-${Version}.zip . \
-          && aws s3 cp $zip_file s3://${Bucket}/
+        cd /u/python-${Version} \
+          && zip_file="${CODEBUILD_SRC_DIR}/python-${Version}.zip" \
+          && zip -q -r -m $zip_file /tmp/python-${Version}.zip . \
+          && aws s3 cp --quiet $zip_file s3://${Bucket}/
 artifacts: {}

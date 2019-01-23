@@ -10,10 +10,13 @@ apt-get -qq install wget zip gcc g++ libsqlite3-dev libbz2-dev \
   libdb-dev python python-pip
 pip install awscli
 url="https://www.python.org/ftp/python/${version}/Python-${version}.tgz"
-filename="python-${version}.tgz"
+mkdir -p /u/downloads
+filename="/u/downloads/python-${version}.tgz"
 wget -q $url -O $filename
+build_dir="/u/python-${version}"
+mkdir -p ${build_dir} && pushd ${build_dir}
 tar xzf $filename --strip-components=1
-rm $filename
-./configure >/dev/null
+./configure --enable-optimizations >/dev/null
 make >/dev/null
 make altinstall >/dev/null
+popd
