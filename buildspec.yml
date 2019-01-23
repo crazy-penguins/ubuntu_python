@@ -2,12 +2,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - "cd ${CODEBUILD_SRC_DIR}"
-      - chmod a+x build_python.sh
-      - ./build_python.sh "${Version}"
       - |
-        cd /u/python-${Version} \
-          && zip_file="${CODEBUILD_SRC_DIR}/python-${Version}.zip" \
-          && zip -q -r -m $zip_file /tmp/python-${Version}.zip . \
+        zip_file="/work/python-${Version}" \
           && aws s3 cp --quiet $zip_file s3://${Bucket}/
 artifacts: {}
