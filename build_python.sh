@@ -1,6 +1,5 @@
 #!/bin/bash
 version=$(cat /work/VERSION)
-export DEBIAN_FRONTEND=noninteractive
 apt-get -qq update
 apt-get -qq install wget zip gcc g++ libsqlite3-dev libbz2-dev \
   libffi-dev make libreadline-dev libz3-dev libfreetype6-dev \

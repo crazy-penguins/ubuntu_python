@@ -1,5 +1,6 @@
 FROM ubuntu:bionic
 ENV container docker
+ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /work
 SHELL [ "/bin/bash", "-c" ]
 COPY NAME .
